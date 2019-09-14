@@ -11,7 +11,8 @@ defmodule MaMenu.Application do
       # Start the Ecto repository
       MaMenu.Repo,
       # Start the endpoint when the application starts
-      MaMenuWeb.Endpoint
+      MaMenuWeb.Endpoint,
+      MaMenuWeb.MenuGenServ
       # Starts a worker by calling: MaMenu.Worker.start_link(arg)
       # {MaMenu.Worker, arg},
     ]

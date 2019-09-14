@@ -1,0 +1,6 @@
+<div class="phx-hero">
+    <h1>Menu</h1>
+    <h2>Todays tip: <%= @tip %></h2>
+    <h2>Todays new: <%= @new %></h2>
+    
+</div>
