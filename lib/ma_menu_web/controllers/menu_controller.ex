@@ -11,13 +11,21 @@ defmodule MaMenuWeb.MenuController do
   end
 
   def menu(conn, _params) do
-    [today, new, _] = MaMenuWeb.MenuGenServ.get_resturants()
+    [%{"name" => today}, %{"name" => new}, _] = MaMenuWeb.MenuGenServ.get_resturants()
     render(conn, "menu.html", tip: today, new: new)
   end
 
   def update(conn, params) do
     IO.inspect(params)
-    render(conn, "index.html")
+
+    case Map.has_key?(params, "name") do
+      true ->
+        MaMenuWeb.MenuGenServ.update(Map.get(params, "name"))
+        json(conn, %{:status => :ok})
+
+      false ->
+        json(conn, %{:status => :error})
+    end
   end
 
   # def show(conn, %{"messenger" => messenger}) do

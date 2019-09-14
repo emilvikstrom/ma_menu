@@ -9,6 +9,14 @@ defmodule MaMenuWeb.MenuGenServ do
     GenServer.call(:menuserv, :get)
   end
 
+  def update(resturant) do
+    GenServer.call(:menuserv, {:update, resturant})
+  end
+
+  def get_state() do
+    GenServer.call(:menuserv, :state)
+  end
+
   @impl true
   def init([]) do
     # resturants = resturants()
@@ -20,6 +28,14 @@ defmodule MaMenuWeb.MenuGenServ do
   def handle_call(:get, _from, state) do
     res = state |> Enum.shuffle() |> Enum.take(3)
     {:reply, res, state}
+  end
+
+  def handle_call({:update, resturant}, _from, state) do
+    {:reply, :ok, [create_resturant(resturant) | state]}
+  end
+
+  def handle_call(:state, _from, state) do
+    {:reply, state, state}
   end
 
   def handle_call(_, _, state) do
