@@ -11,7 +11,8 @@ defmodule MaMenuWeb.MenuGenServ do
 
   @impl true
   def init([]) do
-    resturants = resturants()
+    # resturants = resturants()
+    resturants = for r <- resturants(), do: create_resturant(r)
     {:ok, resturants}
   end
 
@@ -37,5 +38,9 @@ defmodule MaMenuWeb.MenuGenServ do
       "Bipimbap",
       "Primo Ciao Ciao"
     ]
+  end
+
+  def create_resturant(name) do
+    %{"name" => name, "visits" => 0}
   end
 end
