@@ -2,7 +2,7 @@ defmodule MaMenuWeb.Router do
   use MaMenuWeb, :router
 
   pipeline :browser do
-    plug(:accepts, ["html"])
+    plug(:accepts, ["html", "json"])
     plug(:fetch_session)
     plug(:fetch_flash)
     plug(:protect_from_forgery)
@@ -18,6 +18,7 @@ defmodule MaMenuWeb.Router do
 
     get("/", PageController, :index)
     get("/menu", MenuController, :menu)
+    post("/menu", MenuController, :update)
     get("/menu/:messenger", MenuController, :show)
   end
 

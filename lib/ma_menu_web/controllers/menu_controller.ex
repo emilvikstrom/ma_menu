@@ -15,6 +15,11 @@ defmodule MaMenuWeb.MenuController do
     render(conn, "menu.html", tip: today, new: new)
   end
 
+  def update(conn, params) do
+    IO.inspect(params)
+    render(conn, "index.html")
+  end
+
   # def show(conn, %{"messenger" => messenger}) do
   # IO.puts("show")
   # render(conn, "show.html", messenger: messenger)
